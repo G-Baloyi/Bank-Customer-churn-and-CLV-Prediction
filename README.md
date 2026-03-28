@@ -113,8 +113,6 @@ Retention Score = Churn Probability × Predicted CLV
 
 <img width="433" height="410" alt="image" src="https://github.com/user-attachments/assets/a630a74e-01be-4e1f-bfeb-db5ed8fda4d8" />
 <img width="443" height="412" alt="image" src="https://github.com/user-attachments/assets/087eb81e-40bc-4714-a522-6f3964d08a3a" />
-<img width="525" height="414" alt="image" src="https://github.com/user-attachments/assets/522c0029-c4f1-4606-a5ef-e6706f2a745c" />
-<img width="449" height="410" alt="image" src="https://github.com/user-attachments/assets/4fa4b94a-d88d-4fac-95bb-4f0db583fa7b" />
 
 ---
 
