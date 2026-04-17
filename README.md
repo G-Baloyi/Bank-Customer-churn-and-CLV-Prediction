@@ -1,148 +1,234 @@
-# Bank Customer Churn & CLV Prediction
+# 🏦 Bank Customer Churn & CLV Prediction
 
-A machine learning project that predicts **customer churn**, estimates **Customer Lifetime Value (CLV)**, and identifies **high-priority customers for retention** using a dataset of **50,000+ customers and 19+ features**.
+> **A machine learning pipeline that predicts customer churn, estimates Customer Lifetime Value (CLV), and identifies high-priority customers for targeted retention campaigns.**
+
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://www.python.org/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)](https://jupyter.org/)
+[![XGBoost](https://img.shields.io/badge/XGBoost-1.7%2B-brightgreen)](https://xgboost.readthedocs.io/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3%2B-blue)](https://scikit-learn.org/)
+[![SHAP](https://img.shields.io/badge/SHAP-0.44%2B-red)](https://shap.readthedocs.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
-## Project Overview
+## Table of Contents
 
-This project combines **classification, regression, clustering, and explainable AI** to solve a real-world business problem:
+- [Overview](#overview)
+- [Dataset](#dataset)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Methodology](#methodology)
+- [Results](#results)
+- [Retention Strategy](#retention-strategy)
+- [Tech Stack](#tech-stack)
 
-* Predict **which customers will churn**
-* Estimate **how valuable each customer is (CLV)**
-* Prioritize **which customers to retain first**
-* Provide **business insights using visualizations and SHAP explainability**
+---
+
+## Overview
+
+Customer churn is one of the most costly problems in retail banking. This project builds a **full end-to-end ML solution** that:
+
+- Performs rich **exploratory data analysis** on 50,000 bank customers
+- Trains and compares **three churn classifiers** (Logistic Regression, Random Forest, XGBoost)
+- Predicts **Customer Lifetime Value** with regression models
+- Segments all customers into a **Risk × Value retention matrix**
+- Explains model decisions with **SHAP** feature importance
 
 ---
 
 ## Dataset
 
-* **Size**: 50,000+ rows, 19+ columns
-* **Type**: Bank customer data
-* **Key Features**:
+| Property | Value |
+|---|---|
+| Rows | 50,000 customers |
+| Features | 16 columns |
+| Churn Rate | ~24.6% |
+| CLV Range | $0.20 – $25,852 |
+| Missing Values | None |
 
-  * Demographics (Gender, Region)
-  * Financial data (Balance, Salary)
-  * Behavior (Tenure, Products, Activity)
-  * Target variables:
+### Feature Overview
 
-    * `Exited` → Churn (0/1)
-    * `CLV` → Customer Lifetime Value
-
----
-
-## Machine Learning Pipeline
-
-### 1. Data Cleaning
-
-* Missing values handled using:
-
-  * Median (numerical)
-  * Mode / fallback values (categorical)
-* Automatic conversion of numeric-like strings
-
----
-
-### 2. Feature Engineering
-
-* Created advanced features:
-
-  * `Balance_to_Salary`
-  * `Balance_Tenure`
-  * `Products_Active`
-* Customer segmentation using **KMeans Clustering**
-* Tenure grouped into categories
-* One-hot encoding for categorical variables
+| Feature | Type | Description |
+|---|---|---|
+| `CustomerID` | ID | Unique customer identifier |
+| `Age` | Numeric | Customer age |
+| `Gender` | Categorical | Male / Female |
+| `Tenure` | Numeric | Years as a customer |
+| `Balance` | Numeric | Account balance ($) |
+| `NumOfProducts` | Numeric | Number of bank products held |
+| `HasCreditCard` | Binary | Credit card holder? |
+| `IsActiveMember` | Binary | Active account? |
+| `EstimatedSalary` | Numeric | Estimated annual salary ($) |
+| `CreditScore` | Numeric | Credit score (300–850) |
+| `TotalTransactions` | Numeric | Total transaction count |
+| `AverageTransactionValue` | Numeric | Mean transaction value ($) |
+| `AccountType` | Categorical | Standard / Premium |
+| `Region` | Categorical | North / South / East / West |
+| `Exited` | **Target (Churn)** | 0 = Retained, 1 = Churned |
+| `CLV` | **Target (CLV)** | Customer Lifetime Value ($) |
 
 ---
 
-### 3. Models
-
-#### Churn Prediction (Classification)
-
-Ensemble model using:
-
-* Random Forest
-* Gradient Boosting
-* Logistic Regression
-   Combined using **VotingClassifier**
-
-**Metrics:**
-
-* Accuracy
-* ROC-AUC
-* Classification Report
-
----
-
-#### CLV Prediction (Regression)
-
-* Random Forest Regressor
-
-**Metrics:**
-
-* RMSE
-* R² Score
-
----
-
-### 4. Retention Priority Score
-
-A key business metric:
+## Project Structure
 
 ```
-Retention Score = Churn Probability × Predicted CLV
+bank-churn-clv-prediction/
+│
+├── Bank_Customer_Churn_CLV_Prediction.ipynb   # Main notebook
+├── bank_customers_large.csv                   # Dataset (50k rows)
+├── requirements.txt                           # Python dependencies
+├── README.md                                  # This file
+└── reports/
+    └── Project_Report.docx                    # Full project report
 ```
 
- Identifies **high-value customers at risk of leaving**
+---
+
+## Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/bank-churn-clv-prediction.git
+cd bank-churn-clv-prediction
+```
+
+### 2. Create a virtual environment (recommended)
+
+```bash
+python -m venv venv
+source venv/bin/activate        # macOS / Linux
+venv\Scripts\activate           # Windows
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Launch Jupyter
+
+```bash
+jupyter notebook Bank_Customer_Churn_CLV_Prediction.ipynb
+```
 
 ---
 
-## Visualizations
+## Usage
 
-### Interactive (Plotly)
+Simply open the notebook and **Run All Cells** (`Kernel → Restart & Run All`).
 
-* Churn vs CLV scatter plot
-* Top 20 high-priority customers
+The notebook is fully self-contained. Update the dataset path in **Section 2** if needed:
 
-### Statistical (Seaborn / Matplotlib)
-
-* Churn distribution
-* CLV distribution
-* Correlation heatmap
-
-<img width="433" height="410" alt="image" src="https://github.com/user-attachments/assets/a630a74e-01be-4e1f-bfeb-db5ed8fda4d8" />
-<img width="443" height="412" alt="image" src="https://github.com/user-attachments/assets/087eb81e-40bc-4714-a522-6f3964d08a3a" />
+```python
+df = pd.read_csv('bank_customers_large.csv')
+```
 
 ---
 
-## Explainable AI (SHAP)
+## Methodology
 
-* Used **SHAP (SHapley Additive exPlanations)** to interpret model predictions
-* Helps answer:
+### 1. Feature Engineering
+Five engineered features are derived from the raw data:
 
-  * Why a customer is predicted to churn
-  * Which features influence CLV
+| Feature | Formula / Logic |
+|---|---|
+| `BalancePerProduct` | Balance ÷ (NumOfProducts + 1) |
+| `EngagementScore` | Weighted combination of transactions, avg value, active status |
+| `AgeGroup` | Binned: Young / Middle / Senior / Elderly |
+| `TenureGroup` | Binned: New / Growing / Mature / Loyal |
+| `CreditBand` | Binned: Poor / Fair / Good / Excellent |
+
+### 2. Churn Classification
+Three classifiers trained and compared:
+- **Logistic Regression** — regularised linear baseline with `class_weight='balanced'`
+- **Random Forest** — 200-tree ensemble with balanced class weights
+- **XGBoost** — gradient boosting with `scale_pos_weight` for imbalance handling
+
+### 3. CLV Regression
+Two regressors compared:
+- **Ridge Regression** — L2-regularised linear model (α = 10)
+- **Gradient Boosting Regressor** — 200-estimator boosted ensemble
+
+### 4. SHAP Explainability
+TreeExplainer applied to XGBoost on a 2,000-sample test subset to produce:
+- Beeswarm summary plot (global feature impact)
+- Bar plot (mean absolute SHAP values)
+
+### 5. Retention Segmentation
+All 50,000 customers segmented using a **2×2 Risk × CLV matrix**:
+
+```
+High CLV │  Priority 3 — Valuable  │  Priority 1 — Critical  │
+         │  (Low Risk, High CLV)   │  (High Risk, High CLV)  │
+─────────┼─────────────────────────┼─────────────────────────┤
+Low CLV  │  Priority 4 — Standard  │  Priority 2 — At Risk   │
+         │  (Low Risk, Low CLV)    │  (High Risk, Low CLV)   │
+         └─────────────────────────┴─────────────────────────┘
+                    Low Churn Risk           High Churn Risk
+```
 
 ---
 
 ## Results
 
-* Accurate churn prediction using ensemble learning
-* Reliable CLV estimation
-* Clear identification of:
+### Churn Classification
 
-  * High-risk customers
-  * High-value customers
-* Business-ready **Retention Priority Score**
+| Model | Accuracy | Precision | Recall | F1-Score | AUC-ROC |
+|---|---|---|---|---|---|
+| Logistic Regression | 0.6147 | 0.3355 | 0.5809 | 0.4254 | 0.6346 |
+| **Random Forest** | 0.6022 | 0.3332 | **0.6196** | **0.4333** | **0.6380** |
+| XGBoost | 0.6093 | 0.3282 | 0.5650 | 0.4152 | 0.6256 |
+
+### CLV Regression
+
+| Model | MAE | RMSE | R² |
+|---|---|---|---|
+| **Ridge Regression** | $2,812 | $3,755 | **0.5361** |
+| Gradient Boosting Regressor | $2,822 | $3,774 | 0.5313 |
+
+### Business Impact
+
+| Metric | Value |
+|---|---|
+| Total customers scored | 50,000 |
+| Priority-1 (Critical) customers | 3,515 |
+| Total revenue at risk | **$167,088,701** |
+| Priority-1 revenue at risk | $26,862,833 |
 
 ---
 
-## Future Improvements
+## Retention Strategy
 
-* Deploy as a web app (Streamlit / Flask)
-* Real-time prediction API
-* Dashboard for business users
-* Model optimization (XGBoost, LightGBM)
+| Segment | Customers | Action |
+|---|---|---|
+| 🔴 Priority 1 — Critical | 3,515 | Immediate personal outreach, premium retention offers |
+| 🟡 Priority 2 — At Risk | 11,485 | Automated re-engagement email/SMS campaigns |
+| 🟢 Priority 3 — Valuable | 11,485 | Loyalty rewards, cross-sell premium products |
+| ⚪ Priority 4 — Standard | 23,515 | Standard service tier |
 
 ---
+
+## Tech Stack
+
+| Library | Version | Purpose |
+|---|---|---|
+| `pandas` | ≥ 2.0 | Data manipulation |
+| `numpy` | ≥ 1.24 | Numerical operations |
+| `scikit-learn` | ≥ 1.3 | ML models, preprocessing, evaluation |
+| `xgboost` | ≥ 1.7 | Gradient boosting classifier |
+| `shap` | ≥ 0.44 | Model explainability |
+| `matplotlib` | ≥ 3.7 | Plotting |
+| `seaborn` | ≥ 0.12 | Statistical visualisation |
+| `jupyter` | ≥ 1.0 | Notebook environment |
+
+---
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+---
+
