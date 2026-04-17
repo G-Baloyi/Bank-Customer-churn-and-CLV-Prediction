@@ -1,4 +1,4 @@
-# 🏦 Bank Customer Churn & CLV Prediction
+# Bank Customer Churn & CLV Prediction
 
 > **A machine learning pipeline that predicts customer churn, estimates Customer Lifetime Value (CLV), and identifies high-priority customers for targeted retention campaigns.**
 
