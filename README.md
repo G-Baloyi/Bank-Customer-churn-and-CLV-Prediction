@@ -11,20 +11,6 @@
 
 ---
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Dataset](#dataset)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Methodology](#methodology)
-- [Results](#results)
-- [Retention Strategy](#retention-strategy)
-- [Tech Stack](#tech-stack)
-
----
-
 ## Overview
 
 Customer churn is one of the most costly problems in retail banking. This project builds a **full end-to-end ML solution** that:
@@ -225,10 +211,3 @@ Low CLV  │  Priority 4 — Standard  │  Priority 2 — At Risk   │
 | `jupyter` | ≥ 1.0 | Notebook environment |
 
 ---
-
-## License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
-
----
-
