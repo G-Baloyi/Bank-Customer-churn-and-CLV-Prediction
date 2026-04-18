@@ -158,45 +158,6 @@ Low CLV  │  Priority 4 — Standard  │  Priority 2 — At Risk   │
 
 ---
 
-## Results
-
-### Churn Classification
-
-| Model | Accuracy | Precision | Recall | F1-Score | AUC-ROC |
-|---|---|---|---|---|---|
-| Logistic Regression | 0.6147 | 0.3355 | 0.5809 | 0.4254 | 0.6346 |
-| **Random Forest** | 0.6022 | 0.3332 | **0.6196** | **0.4333** | **0.6380** |
-| XGBoost | 0.6093 | 0.3282 | 0.5650 | 0.4152 | 0.6256 |
-
-### CLV Regression
-
-| Model | MAE | RMSE | R² |
-|---|---|---|---|
-| **Ridge Regression** | $2,812 | $3,755 | **0.5361** |
-| Gradient Boosting Regressor | $2,822 | $3,774 | 0.5313 |
-
-### Business Impact
-
-| Metric | Value |
-|---|---|
-| Total customers scored | 50,000 |
-| Priority-1 (Critical) customers | 3,515 |
-| Total revenue at risk | **$167,088,701** |
-| Priority-1 revenue at risk | $26,862,833 |
-
----
-
-## Retention Strategy
-
-| Segment | Customers | Action |
-|---|---|---|
-| 🔴 Priority 1 — Critical | 3,515 | Immediate personal outreach, premium retention offers |
-| 🟡 Priority 2 — At Risk | 11,485 | Automated re-engagement email/SMS campaigns |
-| 🟢 Priority 3 — Valuable | 11,485 | Loyalty rewards, cross-sell premium products |
-| ⚪ Priority 4 — Standard | 23,515 | Standard service tier |
-
----
-
 ## Tech Stack
 
 | Library | Version | Purpose |
